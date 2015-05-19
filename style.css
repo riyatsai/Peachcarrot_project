@@ -87,11 +87,14 @@ body a:visited { text-decoration: none;color: #fff;
 }
 .cellDiv{
 	display:inline-block;
-	width:255.5px;
-	height:180px;
+	width:20vw;
+	height:25vh;
 	float:left;
+	
 }
 .footer{
-	position:absolute;
+	position:fixed;
 	bottom:0;
+	margin:0 auto;
+	
 }
