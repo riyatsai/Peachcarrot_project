@@ -17,10 +17,10 @@
 <body>
 <header>
 	<ul>
-		<li style="margin-left:0%;"><img src="pic/PeachParrotName.png" class="logo"></a></li>
-		<li class="icon"><img src="pic/Personalize.png" class="menuBar" id="personIcon" onclick="showDialog('#personPage')"></li>
-		<li class="icon"><a href=""><img src="pic/Menu.png" class="menuBar"></a></li>
-		<li class="icon"><a href=""><img src="pic/ParrotIcon.png" class="menuBar"></a></li>
+		<li style="margin-left:0%;"><img src="pic/PeachParrotName.png" class="logo"></li>
+		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Profile"><img src="pic/Personalize.png" class="menuBar" id="personIcon" onclick="showDialog('#personPage')"></li>
+		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Menu"><a href=""><img src="pic/Menu.png" class="menuBar"></a></li>
+		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="About us"><a href=""><img src="pic/ParrotIcon.png" class="menuBar"></a></li>
 	</ul>
 </header>
 <div  id="enter"><a href="" target="blink"><img src="pic/PeachLogo.png"></a></div>
@@ -31,7 +31,7 @@
 	 	   <img src="pic/1.jpg">
 	    </div>
 	    <div class="image-overlay">
-		    <h2>title<h2>
+		    <h2>title</h2>
 	    </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
 	 	   <img src="pic/2.jpg">
 	    </div>
 	    <div class="image-overlay">
-		   <h2>title<h2>
+		   <h2>title</h2>
 	    </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
 	 	   <img src="pic/3.jpg">
 	    </div>
 	    <div class="image-overlay">
-		   <h2>title<h2>
+		   <h2>title</h2>
 	    </div>
     </div>
   </div>
@@ -61,7 +61,7 @@
 	 	   <img src="pic/4.png">
 	    </div>
 	    <div class="image-overlay">
-		   <h2>title<h2>
+		   <h2>title</h2>
 	    </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
  	   <img src="pic/5.jpg">
     </div>
     <div class="image-overlay">
-	   <h2>title<h2>
+	   <h2>title</h2>
     </div>	
    </div>
  </div> 
@@ -85,17 +85,27 @@
   </div>
   
   <div class="progressDiv">
+	<span class="glyphicon glyphicon-star" style="color:#FFEE99;display:inline-block;"></span>
 	<div id="progress1" class="progress large" data-value="35"  data-role="progressBar"><div class="bar" style="background-color:#ACDCCE;"></div></div>
+</br>
+	<span class="glyphicon glyphicon-star" style="color:#FFEE99;display:inline-block;"></span>
+	<div id="progress2" class="progress large" data-value="65"  data-role="progressBar"><div class="bar" style="background-color:#ACDCCE;"></div></div>
+</br>
+	<span class="glyphicon glyphicon-star" style="color:#FFEE99;display:inline-block;"></span>
+	<div id="progress3" class="progress large" data-value="45"  data-role="progressBar"><div class="bar" style="background-color:#ACDCCE;"></div></div>
+</br>	
+	<span class="glyphicon glyphicon-star" style="color:#FFEE99;display:inline-block;"></span>
+	<div id="progress4" class="progress large" data-value="95"  data-role="progressBar"><div class="bar" style="background-color:#ACDCCE;"></div></div>
   </div>
-  
-  
-  
-  
-  
          <span class="dialog-close-button"></span></div> 
 </div>
+
+
 <script language="javascript">
 $(document).ready(function(){
+	$(function () {
+	    $('[data-toggle="tooltip"]').tooltip()
+	})
 	$("#footerPic1").mouseover(function(){
 		$("body").css("background-image","url(pic/1_1.jpg)");
 		$("body").css("transition","800ms");
@@ -109,16 +119,16 @@ $(document).ready(function(){
 		$("body").css("transition","800ms");
 	});
 	$("#footerPic4").mouseover(function(){
-		$("body").css("transition","800ms");
 		$("body").css("background-image","url(pic/4_1.png)");
+		$("body").css("transition","800ms");
 	});
 	$("#footerPic5").mouseover(function(){
-		$("body").css("transition","800ms");
 		$("body").css("background-image","url(pic/5_1.jpg)");
+		$("body").css("transition","800ms");
 	});
 	$(".footer").mouseout(function(){
-		$("body").css("transition","800ms");
 		$("body").css("background-image","");
+		$("body").css("transition","800ms");
 	});
 });
 </script>

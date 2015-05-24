@@ -4067,11 +4067,11 @@ window.METRO_LOCALES = {
 
         options: {
             popoverText: '',
-            popoverTimeout: 3000,
+            popoverTimeout: 300,
             popoverPosition: 'top', //top, bottom, left, right
             popoverBackground: 'bg-cyan',
             popoverColor: 'fg-white',
-            popoverMode: 'none', //click, hover,
+            popoverMode: 'hover', //click, hover,
             popoverShadow: true
         },
 
