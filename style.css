@@ -137,3 +137,34 @@ body a:visited { text-decoration: none;color: #fff;
 .glyphicon-star{
 	float:left;
 }
+.page{
+	height:100%;
+	z-index:-10000;
+}
+.courseSelector{
+	width:20px;
+	height:130px;
+	position:fixed;
+	top:40%;
+	left:5%;
+}
+.selectorCircle{
+	width:15px;
+	height:15px;
+	border-radius:50%;
+	background-color:#fff;
+	margin-top:20px;	
+}
+.selectorCircle:hover{
+	background-color:#FFCAD4;
+}
+.courseContent{
+	width:550px;
+	height:550px;
+	border-radius:50%;
+	background-color:#aaa;
+	opacity:0.5;
+	position:relative;
+	margin:0 auto;
+	top:18%;
+}
