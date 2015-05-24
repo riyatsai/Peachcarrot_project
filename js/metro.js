@@ -3032,8 +3032,8 @@ window.METRO_LOCALES = {
         version: "3.0.0",
 
         options: {
-            modal:false,
-            overlay:false,
+            modal: false,
+            overlay: false,
             overlayColor: 'default',
             type: 'default', // success, alert, warning, info
             place: 'center', // center, top-left, top-center, top-right, center-left, center-right, bottom-left, bottom-center, bottom-right
