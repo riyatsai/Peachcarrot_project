@@ -6,7 +6,7 @@ header{
 	margin:0 auto;
 	position:fixed;
 	top:0;
-	box-shadow: 0 2px 3px #000;
+	box-shadow: 0 2px 3px #aaa;
 }
 header ul{
 	width:100%;
