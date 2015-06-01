@@ -174,3 +174,8 @@ body a:visited { text-decoration: none;color: #fff;
 	background-color:#ACDCCE;
 }
 
+.dropdown-toggle{
+	width:30px;
+	height:30px;
+	background-image:url('pic/Menu.png');
+}
