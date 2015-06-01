@@ -14,10 +14,8 @@ header ul{
 }
 header ul li{
 	display:inline-block;
-	margin-left:20px;
 	font-size:20px;
 	color:#fff;
-
 }
 header ul li a{
 	color:#fff;
@@ -72,30 +70,21 @@ body a:visited { text-decoration: none;color: #fff;
 	height:320px;
 	transition: 800ms;
 }
-#enter:hover{
-
-}
-.menuBar{
-	width:30px;
-	height:30px;
-	opacity:0.6;
-	-webkit-transition:width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-	transition:width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
-	
-}
-.menuBar:hover{
-	opacity:1;
-	width:35px;
-	height:35px;
-}
 .logo{
 	height:30px;
 	
 }
 .icon{
 	position:relative;
-	left:67%;
+	left:76%;
+	display:inline-block;
+	width:30px;
+	margin-right:13px;
 }
+.dropdown-toggle{
+	color:#fff;
+}
+
 .cellDiv{
 	display:inline-block;
 	width:20vw;
@@ -149,9 +138,15 @@ body a:visited { text-decoration: none;color: #fff;
 .glyphicon-star{
 	float:left;
 }
-.page{
-	height:100%;
+.pageW{
+	height:100vh;
 	z-index:-10000;
+	background-color:#fff;
+}
+.pageG{
+	height:100vh;
+	z-index:-10000;
+	background-color:#ACDCCE;
 }
 .courseSelector{
 	width:20px;
@@ -164,19 +159,18 @@ body a:visited { text-decoration: none;color: #fff;
 	width:15px;
 	height:15px;
 	border-radius:50%;
-	background-color:#fff;
+	background-color:#F4ACB7;
 	margin-top:20px;	
 }
 .selectorCircle:hover{
 	background-color:#FFCAD4;
 }
-.courseContent{
-	width:550px;
-	height:550px;
-	border-radius:50%;
-	background-color:#aaa;
-	opacity:0.5;
-	position:relative;
-	margin:0 auto;
-	top:18%;
+
+.d-menu li{
+	background-color:#CBDBD0;
+	width:100px;
 }
+.d-menu li:hover{
+	background-color:#ACDCCE;
+}
+
