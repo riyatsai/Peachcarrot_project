@@ -149,6 +149,9 @@ body a:visited { text-decoration: none;color: #fff;
 	z-index:-10000;
 	background-color:#ACDCCE;
 }
+.blank{
+	height:40px;
+}
 .courseSelector{
 	width:20px;
 	height:130px;
@@ -183,6 +186,5 @@ body a:visited { text-decoration: none;color: #fff;
 
 .testPde{
 	position:relative;
-	top:20%;
 	left:30%;
 }
