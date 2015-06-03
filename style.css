@@ -179,3 +179,9 @@ body a:visited { text-decoration: none;color: #fff;
 	height:30px;
 	background-image:url('pic/Menu.png');
 }
+
+.testPde{
+	margin:0 auto;
+	position:relative;
+	top:5%;
+}
