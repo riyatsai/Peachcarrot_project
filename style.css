@@ -181,7 +181,7 @@ body a:visited { text-decoration: none;color: #fff;
 }
 
 .testPde{
-	margin:0 auto;
 	position:relative;
 	top:5%;
+	left:30%;
 }
