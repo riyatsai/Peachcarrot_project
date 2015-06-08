@@ -29,7 +29,6 @@
 	  user.set("username",usr);
 	  user.set("email",mail);
 	  user.set("password",pwd);
-	  user.set("rank",(role=='teacher'?1:0));
 	  user.set("signature",0);
 
       user.signUp(null,{
@@ -86,21 +85,6 @@
         <div class="col-md-4">
           <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="">
 
-        </div>
-      </div>
-
-      <!-- Role -->
-      <div class="form-group">
-        <label class="col-md-4 control-label" for="">角色*</label>
-        <div class="col-md-4">
-          <label class="radio-inline" for="-0">
-            <input type="radio" name="role" id="-0" value="teacher" >
-            老師
-          </label>
-          <label class="radio-inline" for="-1">
-            <input type="radio" name="role" id="-1" value="student" checked="checked">
-            學生
-          </label>
         </div>
       </div>
 
