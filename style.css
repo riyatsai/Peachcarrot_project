@@ -1,6 +1,6 @@
 header{
 	width:100%;
-	height:40px;
+	height:45px;
 	background:#ACDCCE;
 	opacity:0.8;
 	margin:0 auto;
@@ -77,10 +77,10 @@ body a:visited { text-decoration: none;color: #fff;
 }
 .icon{
 	position:relative;
-	left:76%;
+	left:68%;
 	display:inline-block;
 	width:30px;
-	margin-right:13px;
+	margin-right:15px;
 }
 .dropdown-toggle{
 	color:#fff;
@@ -189,15 +189,15 @@ body a:visited { text-decoration: none;color: #fff;
 	left:30%;
 }
 .btn {
-  background-color: #ed72a6;
-  border-color: #ed72a6;
+  background-color: #61cfa1;
+  border-color: #61cfa1;
 }
 .btn:hover,
 .btn:focus,
 .btn:active,
 .btn.active {
-  background-color: #ea5b98;
-  border-color: #e74589;
+  background-color: #4dc995;
+  border-color: #3bc28a;
 }
 .btn.disabled:hover,
 .btn.disabled:focus,
@@ -211,6 +211,11 @@ fieldset[disabled] .btn:hover,
 fieldset[disabled] .btn:focus,
 fieldset[disabled] .btn:active,
 fieldset[disabled] .btn.active {
-  background-color: #ed72a6;
-  border-color: #ed72a6;
+  background-color: #61cfa1;
+  border-color: #61cfa1;
+}
+.formPos{
+	margin:0 auto;
+	position:relative;
+	top:20%;
 }
