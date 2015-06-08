@@ -17,8 +17,7 @@
 	<script  type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
       console.log('signUp submit');
-      /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
-        // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
+  
 	  e.preventDefault();
 	  var usr=$('#username').val();
 	  var mail=$('#email').val();
@@ -34,15 +33,15 @@
       user.signUp(null,{
 		  success:function(data){
 			  alert("註冊成功");
-			  window.location="logIn.html";
+			  window.location="peachparrot.html";
 		  },
 		  error:function(data,error){
 			  console.log(error);
 		  	  alert("註冊失敗");
 		  }
       });
-      /* 結束*/
-    });  //endof signUpBtn onSubmit
+
+    });  
     </script>	
 
 </head>
@@ -57,10 +56,6 @@
 
       <form id="signUpForm" class="form-horizontal">
       <fieldset>
-
-      <!-- Form Name -->
-      <legend>註冊</legend>
-
       <!-- Text input-->
       <div class="form-group">
         <label class="col-md-4 control-label" for="username">username*</label>
