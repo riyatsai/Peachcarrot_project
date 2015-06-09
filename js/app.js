@@ -6,4 +6,7 @@ function showDialog(id){
 }
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
+})
+$(document).on('click','.dialog-close-button',function(){
+	$('#personPage').data('dialog').close();
 });
