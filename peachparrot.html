@@ -4,7 +4,6 @@
 	<meta charset="utf-8">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>	
 	<link href="css/metro.css" rel="stylesheet">
 	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -34,20 +33,16 @@
 	<ul>
 		<li style="margin-left:0%;"><a href="peachparrot.html"><img src="pic/PeachParrotName.png" class="logo"></a></li>
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Profile"><img src="pic/Personalize.png" class="" id="personIcon" onclick="showDialog('#personPage')"></li>
-		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="About us"><a href=""><img src="pic/ParrotIcon.png" class=""></a></li>
-		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Menu"><a class="dropdown-toggle"><img src="pic/Menu.png"></a>
-			    <ul class="d-menu" data-role="dropdown">
-					<li><a href="course.html">1</a></li>
-					<li><a href="">2</a></li>
-	            </ul>
-		</li>
+		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="About us"><a href="aboutUs.html"><img src="pic/ParrotIcon.png" class=""></a></li>
+		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Course"><a href="course.html"><img src="pic/Menu.png" class=""></a></li>
 		<li class="icon"><a class="btn" href="login.html">登入</a></li>
 		<li class="icon"><a class="btn" href="signup.html">註冊</a></li>
 		
 	</ul>
 </header>
 
-<div  id="enter"><a href="course.html"><img src="pic/PeachLogo.png"></a></div>
+<div id="enter"><a><img src="pic/PeachLogo.png"></a></div>
+
 <div class="footer">
   <div id="footerPic1" class="cellDiv">
     <div class="image-container">
@@ -82,7 +77,7 @@
   <div id="footerPic4" class="cellDiv">
     <div class="image-container">
 	    <div class="frame">
-	 	   <img src="pic/4.png">
+	 	   <img src="pic/4.jpg">
 	    </div>
 	    <div class="image-overlay">
 		   <h2>title</h2>
@@ -122,7 +117,7 @@ $(document).ready(function(){
 		$("body").css("transition","800ms");
 	});
 	$("#footerPic4").mouseover(function(){
-		$("body").css("background-image","url(pic/4_1.png)");
+		$("body").css("background-image","url(pic/4_1.jpg)");
 		$("body").css("transition","800ms");
 	});
 	$("#footerPic5").mouseover(function(){

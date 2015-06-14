@@ -31,7 +31,7 @@ header p{
 	color:#fff;
 }
 body{
-	background-image:url("img/bg.png");
+	background-image:url("");
 	background-repeat: no-repeat;
 	background-size:100%;
 	background-attachment:fixed;
@@ -54,23 +54,21 @@ body a:hover { text-decoration:none;color: #fff;
 } 
 body a:visited { text-decoration: none;color: #fff;
 }
+p,a{
+font-family: Meiryo;
+}
 #enter{
-	width:300px;
-	height:300px;
+	width:350px;
+	height:350px;
 	position:relative;
+	top:17%;
 	margin:0 auto;
-	top:20%;
 	opacity:1;
 	border-radius:50%;
 	box-shadow: 0 3px 2px #aaa;
 	
 }
-#enter:hover{
-	top:18%;
-	width:320px;
-	height:320px;
-	transition: 800ms;
-}
+
 .logo{
 	height:30px;
 	
@@ -88,10 +86,10 @@ body a:visited { text-decoration: none;color: #fff;
 
 .cellDiv{
 	display:inline-block;
-	width:20vw;
-	height:25vh;
+	width:19vw;
+	height:22vh;
+	margin:0.5vw;
 	float:left;
-	
 }
 .footer{
 	position:fixed;
@@ -184,10 +182,7 @@ body a:visited { text-decoration: none;color: #fff;
 	background-image:url('pic/Menu.png');
 }
 
-.testPde{
-	position:relative;
-	left:30%;
-}
+
 .btn {
   background-color: #61cfa1;
   border-color: #61cfa1;
@@ -218,4 +213,19 @@ fieldset[disabled] .btn.active {
 	margin:0 auto;
 	position:relative;
 	top:20%;
+}
+.divide{
+	position:relative;
+	width:700px;
+	top:20%;
+	margin:0 auto;
+}
+.member{
+	border-radius:50%;
+	width:150px;
+	height:150px;
+}
+.memberCard{
+	width:170px;
+	display:inline-block;
 }
