@@ -83,11 +83,11 @@ font-family: Meiryo;
 }
 
 .cellDiv{
-	display:inline-block;
+/*	display:inline-block;*/
 	width:19vw;
 	height:22vh;
-	margin:0.5vw;
-	float:left;
+/*	margin:0.5vw;*/
+/*	float:left;*/
 }
 .footer{
 	position:fixed;
@@ -95,6 +95,36 @@ font-family: Meiryo;
 	margin:0 auto;
 	
 }
+#footerPic1{
+	position:absolute;
+	top:12%;
+	right:10%;
+}
+#footerPic2{
+	position:absolute;
+	top:50%;
+	left:12%;
+}
+#footerPic3{
+	position:absolute;
+	top:70%;
+	right:30%;
+}
+#footerPic4{
+	position:absolute;
+	top:20%;
+	left:7%;
+}
+#footerPic5{
+	position:absolute;
+	top:45%;
+	right:7%;
+}
+
+
+
+
+
 .personPage{
 	width:800px; 
 	height: 500px; 
