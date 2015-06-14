@@ -31,9 +31,7 @@ header p{
 	color:#fff;
 }
 body{
-	background-image:url("");
-	background-repeat: no-repeat;
-	background-size:100%;
+	background-image:url("pic/bg.jpg");
 	background-attachment:fixed;
 	background-position:50% 0%;
 	margin:0;
