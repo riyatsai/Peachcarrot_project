@@ -30,7 +30,7 @@ header p{
 	font-size:40px;
 	color:#fff;
 }
-body{
+.homeBody{
 	background-image:url("pic/bg.jpg");
 	background-attachment:fixed;
 	background-position:50% 0%;
@@ -59,7 +59,7 @@ font-family: Meiryo;
 	width:350px;
 	height:350px;
 	position:relative;
-	top:17%;
+	top:23%;
 	margin:0 auto;
 	opacity:1;
 	border-radius:50%;
