@@ -26,6 +26,14 @@
 	  e.preventDefault()
 	  $(this).tab('show')
 	})
+	$(document).ready(function(){
+		var anchor = (window.location.href.match(/#[a-zA-Z0-9]*/g)==null?null:window.location.href.match(/#[a-zA-Z0-9]*/g)[0].substr(1));
+		if(anchor!=null){
+		    var aTag = $("a[name='"+ anchor +"']");
+		    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+		}
+		console.log("anchor:"+anchor);
+	});
 </SCRIPT>
 </head>
 
@@ -34,7 +42,7 @@
 	<ul>
 		<li style="margin-left:0%;"><a href="peachparrot.html"><img src="pic/PeachParrotName.png" class="logo"></a></li>
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Profile"><img src="pic/Personalize.png" class="" id="personIcon" onclick="showDialog('#personPage')"></li>
-		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="About us"><a href=""><img src="pic/ParrotIcon.png" class=""></a></li>
+		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="About us"><a href="aboutUs.html"><img src="pic/ParrotIcon.png" class=""></a></li>
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Course"><a href="course.html"><img src="pic/Menu.png" class=""></a></li>
 		<li class="icon"><a class="btn" href="login.html">登入</a></li>
 		<li class="icon"><a class="btn" href="signup.html">註冊</a></li>
@@ -73,28 +81,57 @@
 </div>
 
 <!--page1 -->
-<div class="blank" data-scroll-index="1"></div>
-<canvas class="testPde" data-processing-sources="Knit_simple_Posen0525_v4/Knit_simple_Posen0525_v4.pde"></canvas>
+<div class="blank" data-scroll-index="1"><a name="scroll1"></a></div>
 <div class="pageW">
-    <div class="courseContent"></div>
+    <div class="courseContent">
+    	<div class="courseContentLeft">
+		  	
+			<iframe id="player" type="text/html" width="640" height="390"
+			  src="http://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1&origin=http://example.com"
+			  frameborder="0"></iframe>
+
+	    </div>
+		<div class="courseContentRight">
+			<form class="progressForm">
+				<p>學習進度</p>
+				<label class="checkbox-inline">
+ 				   <input type="checkbox" id="course1stept1" value="option1"> 1
+			   </label>
+		   		</br>
+			   <label class="checkbox-inline">
+				   <input type="checkbox" id="course1stept2" value="option2"> 2
+			   </label>
+		   		</br>
+			   <label class="checkbox-inline">
+ 				  <input type="checkbox" id="course1stept3" value="option3"> 3
+			  </label>
+		  		</br></br>
+				<div class="slider" data-accuracy="30" data-role="slider" data-marker-color="blue" data-show-hint="true"><div class="complete ribbed-red" style="width: 155px;"></div><a class="marker blue" style="left: 155px;"></a><span class="slider-hint" style="left: 145px; display: none;"></span></div>
+			  <button type="submit" class="btn">更新</button>
+			</form>
+	    	<div class="testLink" htrf="">測驗</div>
+		
+		
+		</div>
+    </div>
 </div>
 <!--page2 -->
-<div class="blank" data-scroll-index="2"></div>
+<div class="blank" data-scroll-index="2"><a name="scroll2"></a></div>
 <div class="pageG">	
 	<div class="courseContent"></div>
 </div>
 <!--page3 -->
-<div class="blank" data-scroll-index="3"></div>
+<div class="blank" data-scroll-index="3"><a name="scroll3"></a></div>
 <div class="pageW">
 	<div class="courseContent"></div>
 </div>
 <!--page4 -->
-<div class="blank" data-scroll-index="4"></div>
+<div class="blank" data-scroll-index="4"><a name="scroll4"></a></div>
 <div class="pageG">
 	<div class="courseContent"></div>
 </div>
 <!--page5 -->
-<div class="blank" data-scroll-index="5"></div>
+<div class="blank" data-scroll-index="5"><a name="scroll5"></a></div>
 <div class="pageW">
 	<div class="courseContent"></div>
 </div>

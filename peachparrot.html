@@ -18,13 +18,24 @@
   	  var current=Parse.User.current();
 	  console.log(current);
   	  if(current){
-		  
+		   $('.logged').show();
+		   $('.unlogged').hide();
 		   $('#personPage').html("<div class=\"userPic\"></div><div class=\"profile\"><span class=\"username\">Emma Watson</span></div><div class=\"progressDiv\"><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress1\" class=\"progress large\" data-value=\"35\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress2\" class=\"progress large\" data-value=\"65\" data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress3\" class=\"progress large\" data-value=\"45\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress4\" class=\"progress large\" data-value=\"95\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></div><span class=\"dialog-close-button\"></span></div>");
   	  }
   	  else{
-
+		  $('.logged').hide();
+		  $('.unlogged').show();
   	  }
-      }); 
+      });
+	  $(document).on('click','.logged',function(e){
+	      console.log('hihihih');	 
+		  e.preventDefault();
+		  Parse.User.logOut();
+		  window.location="peachparrot.html";
+	  });
+	  function toCourse(index){
+		  window.location = 'course.html#scroll'+index;
+	  }
     </script>
 </head>
 
@@ -35,15 +46,16 @@
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Profile"><img src="pic/Personalize.png" class="" id="personIcon" onclick="showDialog('#personPage')"></li>
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="About us"><a href="aboutUs.html"><img src="pic/ParrotIcon.png" class=""></a></li>
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Course"><a href="course.html"><img src="pic/Menu.png" class=""></a></li>
-		<li class="icon"><a class="btn" href="login.html">登入</a></li>
-		<li class="icon"><a class="btn" href="signup.html">註冊</a></li>
+		<li class="icon"><a class="btn unlogged" href="login.html">登入</a></li>
+		<li class="icon"><a class="btn unlogged" href="signup.html">註冊</a></li>
+		<li class="icon"><a class="btn logged">登出</a></li>
 		
 	</ul>
 </header>
 
 <div id="enter"><a><img src="pic/PeachLogo.png"></a></div>
 
-  <div id="footerPic1" class="cellDiv">
+  <div id="footerPic1" class="cellDiv" onclick="toCourse(1)">
     <div class="image-container handing ani image-format-hd">
   	    <div class="frame">
 	 	   <img src="pic/1.jpg">
@@ -53,7 +65,7 @@
 	    </div>
     </div>
   </div>
-  <div id="footerPic2" class="cellDiv">
+  <div id="footerPic2" class="cellDiv" onclick="toCourse(2)">
     <div class="image-container handing ani image-format-hd">
 	    <div class="frame">
 	 	   <img src="pic/2.jpg">
@@ -63,7 +75,7 @@
 	    </div>
     </div>
   </div>
-  <div id="footerPic3" class="cellDiv">
+  <div id="footerPic3" class="cellDiv" onclick="toCourse(3)">
     <div class="image-container handing ani image-format-hd">
 	    <div class="frame">
 	 	   <img src="pic/3.jpg">
@@ -73,7 +85,7 @@
 	    </div>
     </div>
   </div>
-  <div id="footerPic4" class="cellDiv">
+  <div id="footerPic4" class="cellDiv" onclick="toCourse(4)">
     <div class="image-container handing ani image-format-hd">
 	    <div class="frame">
 	 	   <img src="pic/4.jpg">
@@ -83,7 +95,7 @@
 	    </div>
     </div>
   </div>
- <div id="footerPic5" class="cellDiv">
+ <div id="footerPic5" class="cellDiv" onclick="toCourse(5)">
    <div class="image-container handing ani image-format-hd">
     <div class="frame">
  	   <img src="pic/5.jpg">
