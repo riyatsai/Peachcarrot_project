@@ -5,7 +5,7 @@ $(document).ready(function(){
   if(current){
    	$('.logged').show();
     $('.unlogged').hide();
-    $('#personPage').html("<div class=\"userPic\"></div><div class=\"profile\"><span class=\"username\">Emma Watson</span></div><div class=\"progressDiv\"><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress1\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress2\" class=\"progress large\" data-value=\"0\" data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress3\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress4\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></div><span class=\"dialog-close-button\"></span></div>");
+    $('#personPage').html("<div class=\"userPic\"></div><div class=\"profile\"><span class=\"username\">Emma Watson</span></div><div class=\"progressDiv\"><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress1\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress2\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress3\" class=\"progress large\" data-value=\"0\" data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress4\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress5\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></div><span class=\"dialog-close-button\"></span></div>");
   }
   else{
     $('.logged').hide();
@@ -49,36 +49,13 @@ $('#myTab a').click(function (e) {
 //modal
 function showDialog(id){
 	var current=Parse.User.current();
-	var Course = Parse.Object.extend('CourseProgress');
-	var course = new Parse.Query(Course);
-	//course.equalTo('Progress',step);
-	course.equalTo('UserId',Parse.User.current());	
-	course.find({
-		success:function(obj){
-			for (var i = 0 ; i < obj.length ; i++){ 
-				course = obj[i] ; 
-				courseId=course.get("CourseId");
-				step=course.get("Progress");			
-				var checked = 0;
-				var percent=0;
-				for(var i=0;i<step.length-1;i++){
-					if(step[i]>0){checked++;}
-				}
-				percent = checked/step.length+(step[step.length-1]/(step.length*100));
-				$('#progress'+courseId+" .bar").width((percent*100)+"%");			
-			}
-								
-		},
-		error:function(obj,err){
-			alert('find course fail');
-		}
-	});
-	
-	if(current){	
+	if(current){
+		getProgress();	
     	var dialog = $(id).data('dialog');
     	dialog.open();
 	}	
 	else{
+		alert("請先登入喔！");
 		window.location = 'login.html';		
 	}
 }
@@ -128,27 +105,45 @@ function CourseUpdate(courseId){
 					}
 				});
 		    }
-			runModal(step,courseId);			
+			showDialog("#personPage");			
 		},
 		error:function(obj,err){
 			alert('find course fail');
 		}
 	});
 }
-function runModal(step,courseId){
-	var checked = 0;
-	var percent=0;
-	for(var i=0;i<step.length-1;i++){
-		if(step[i]>0){checked++;}
-	}
-	percent = checked/step.length+(step[step.length-1]/(step.length*100));
-	console.log(percent);
-	
-	var dialog = $('#personPage').data('dialog');
-	dialog.open();
 
-	$('#progress'+courseId+" .bar").width((percent*100)+"%");
+//get progress
+function getProgress(){
+	var Course = Parse.Object.extend('CourseProgress');
+	var course = new Parse.Query(Course);
+	//course.equalTo('Progress',step);
+	course.equalTo('UserId',Parse.User.current());	
+	course.find({
+		success:function(obj){
+			for (var j = 0 ; j < obj.length ; j++){ 
+				course = obj[j] ; 
+				courseId=course.get("CourseId");
+				console.log(j);
+
+				step=course.get("Progress");			
+				var checked = 0;
+				var percent=0;
+				for(var i=0;i<step.length-1;i++){
+					if(step[i]>0){checked++;}
+				}
+				percent = checked/step.length+(step[step.length-1]/(step.length*100));
+				$('#progress'+courseId+" .bar").width((percent*100)+"%");			
+			}
+								
+		},
+		error:function(obj,err){
+			alert('find course fail');
+		}
+	});
 }
+
+
 //login
 $(document).on('submit','#logInForm',function(e){
   console.log('logIn submit');
@@ -158,12 +153,10 @@ $(document).on('submit','#logInForm',function(e){
 
   Parse.User.logIn(usr,password,{
   success:function(data){
-	  alert("success");
 	  var current=Parse.User.current();
 	  current.set("signature",1);
 	  current.save(null,{
 		  success:function(data){
-			  alert("update completely");
 			  window.location="peachparrot.html";
 		  },
 		  error:function(data,error){
