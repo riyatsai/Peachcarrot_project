@@ -30,6 +30,9 @@ header p{
 	font-size:40px;
 	color:#fff;
 }
+body{
+	font-family: Meiryo;	
+}
 .homeBody{
 	background-image:url("pic/bg.jpg");
 	background-attachment:fixed;
@@ -52,7 +55,7 @@ body a:hover { text-decoration:none;color: #fff;
 } 
 body a:visited { text-decoration: none;color: #fff;
 }
-p,a{
+p{
 font-family: Meiryo;
 }
 #enter{
