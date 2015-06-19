@@ -75,7 +75,6 @@ function CourseUpdate(courseId){
     console.log(step);	
 	var Course = Parse.Object.extend('CourseProgress');
 	var course = new Parse.Query(Course);
-	//course.equalTo('Progress',step);
 	course.equalTo('CourseId',courseId);
 	course.equalTo('UserId',Parse.User.current());	
 	course.find({
@@ -91,7 +90,8 @@ function CourseUpdate(courseId){
 					},
 					error:function(obj2,err2){
 						console.log('new course fail');
-					}
+				}
+				
 				});
 			}
 		    else{
@@ -105,12 +105,21 @@ function CourseUpdate(courseId){
 					}
 				});
 		    }
-			showDialog("#personPage");			
+			var checked = 0;
+			var percent=0;
+			for(var i=0;i<step.length-1;i++){
+				if(step[i]>0){checked++;}
+			}
+			percent = checked/step.length+(step[step.length-1]/(step.length*100));
+			console.log(percent);
+			showDialog('#personPage');	
+			$('#progress'+courseId+" .bar").width((percent*100)+"%");
 		},
 		error:function(obj,err){
 			alert('find course fail');
 		}
-	});
+	});		
+	
 }
 
 //get progress
@@ -124,8 +133,6 @@ function getProgress(){
 			for (var j = 0 ; j < obj.length ; j++){ 
 				course = obj[j] ; 
 				courseId=course.get("CourseId");
-				console.log(j);
-
 				step=course.get("Progress");			
 				var checked = 0;
 				var percent=0;
