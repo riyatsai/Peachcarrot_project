@@ -285,3 +285,6 @@ fieldset[disabled] .btn.active {
 	width:170px;
 	display:inline-block;
 }
+.bar{
+	transition: ease width 3s;
+}

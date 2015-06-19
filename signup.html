@@ -14,36 +14,6 @@
 	<script src="processing.js"></script>
 	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script> 
 	<script src="js/app.js"></script>	
-	<script  type="text/javascript">
-    $(document).on('submit','#signUpForm',function(e){
-      console.log('signUp submit');
-  
-	  e.preventDefault();
-	  var usr=$('#username').val();
-	  var mail=$('#email').val();
-	  var pwd=$("#password").val();
-	  var role=$("input:checked").val();
-
-	  var user=new Parse.User();
-	  user.set("username",usr);
-	  user.set("email",mail);
-	  user.set("password",pwd);
-	  user.set("signature",0);
-
-      user.signUp(null,{
-		  success:function(data){
-			  alert("註冊成功");
-			  window.location="peachparrot.html";
-		  },
-		  error:function(data,error){
-			  console.log(error);
-		  	  alert("註冊失敗");
-		  }
-      });
-
-    });  
-    </script>	
-
 </head>
 
 <body>

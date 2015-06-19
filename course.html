@@ -14,27 +14,6 @@
 	<script src="js/metro.js"></script>
 	<script src="js/app.js"></script>	
 	<script src="processing.js"></script> 
-	
-
-<SCRIPT LANGUAGE="JavaScript">  
-	$(function(){
-	  $.scrollIt();
-	  $('.carousel').carousel();
-	});
-	
-	$('#myTab a').click(function (e) {
-	  e.preventDefault()
-	  $(this).tab('show')
-	})
-	$(document).ready(function(){
-		var anchor = (window.location.href.match(/#[a-zA-Z0-9]*/g)==null?null:window.location.href.match(/#[a-zA-Z0-9]*/g)[0].substr(1));
-		if(anchor!=null){
-		    var aTag = $("a[name='"+ anchor +"']");
-		    $('html,body').animate({scrollTop: aTag.offset().top},'slow');
-		}
-		console.log("anchor:"+anchor);
-	});
-</SCRIPT>
 </head>
 
 <body>
@@ -44,17 +23,20 @@
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Profile"><img src="pic/Personalize.png" class="" id="personIcon" onclick="showDialog('#personPage')"></li>
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="About us"><a href="aboutUs.html"><img src="pic/ParrotIcon.png" class=""></a></li>
 		<li class="icon" data-toggle="tooltip" data-placement="bottom" title="Course"><a href="course.html"><img src="pic/Menu.png" class=""></a></li>
-		<li class="icon"><a class="btn" href="login.html">登入</a></li>
-		<li class="icon"><a class="btn" href="signup.html">註冊</a></li>
+		<li class="icon"><a class="btn unlogged" href="login.html">登入</a></li>
+		<li class="icon"><a class="btn unlogged" href="signup.html">註冊</a></li>
+		<li class="icon"><a class="btn logged">登出</a></li>
+		
 	</ul>
 </header>
+
 <!--PERSON -->
-<div data-role="dialog" id="personPage" class="padding20 dialog" data-close-button="true" data-overlay="true" data-overlay-color="op-dark">
+<!-- <div data-role="dialog" id="personPage" class="padding20 dialog" data-close-button="true" data-overlay="true" data-overlay-color="op-dark">
   <div class="userPic"></div>
   <div class="profile">
 	  <span class="username">Emma Watson</span>
   </div>
-  
+
   <div class="progressDiv">
 	<span class="glyphicon glyphicon-star" style="color:#FFEE99;display:inline-block;"></span>
 	<div id="progress1" class="progress large" data-value="35"  data-role="progressBar"><div class="bar" style="background-color:#ACDCCE;"></div></div>
@@ -64,12 +46,12 @@
 </br>
 	<span class="glyphicon glyphicon-star" style="color:#FFEE99;display:inline-block;"></span>
 	<div id="progress3" class="progress large" data-value="45"  data-role="progressBar"><div class="bar" style="background-color:#ACDCCE;"></div></div>
-</br>	
+</br>
 	<span class="glyphicon glyphicon-star" style="color:#FFEE99;display:inline-block;"></span>
 	<div id="progress4" class="progress large" data-value="95"  data-role="progressBar"><div class="bar" style="background-color:#ACDCCE;"></div></div>
   </div>
-         <span class="dialog-close-button"></span></div> 
-</div>
+         <span class="dialog-close-button"></span></div>
+</div> -->
 
 <!--page selector -->
 <div class="courseSelector">
@@ -92,24 +74,24 @@
 
 	    </div>
 		<div class="courseContentRight">
-			<form class="progressForm">
+			<form id="Course1" class="progressForm">
 				<p>學習進度</p>
 				<label class="checkbox-inline">
- 				   <input type="checkbox" id="course1stept1" value="option1"> 1
+ 				   <input name="step[]" type="checkbox" id="course1stept1" value="option1"> 1
 			   </label>
 		   		</br>
 			   <label class="checkbox-inline">
-				   <input type="checkbox" id="course1stept2" value="option2"> 2
+				   <input name="step[]" type="checkbox" id="course1stept2" value="option2"> 2
 			   </label>
 		   		</br>
 			   <label class="checkbox-inline">
- 				  <input type="checkbox" id="course1stept3" value="option3"> 3
+ 				  <input name="step[]" type="checkbox" id="course1stept3" value="option3"> 3
 			  </label>
 		  		</br></br>
 				<div class="slider" data-accuracy="30" data-role="slider" data-marker-color="blue" data-show-hint="true"><div class="complete ribbed-red" style="width: 155px;"></div><a class="marker blue" style="left: 155px;"></a><span class="slider-hint" style="left: 145px; display: none;"></span></div>
-			  <button type="submit" class="btn">更新</button>
+			  <button type="submit" class="btn btn-course" onclick="CourseUpdate(1)">更新</button>
 			</form>
-	    	<div class="testLink" htrf="">測驗</div>
+	    	<div class="testLink" href="">測驗</div>
 		
 		
 		</div>
@@ -137,6 +119,6 @@
 </div>
 
 
-
+<div data-role="dialog" id="personPage" class="padding20 dialog" data-close-button="true" data-overlay="true" data-overlay-color="op-dark">
 </body>
 </html>

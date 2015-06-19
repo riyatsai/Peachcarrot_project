@@ -11,32 +11,6 @@
 	<script src="js/metro.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">	
 	<script src="js/app.js"></script>	
-    <script  type="text/javascript">
-      $(document).ready(function(){
-        console.log('document ready');
-
-  	  var current=Parse.User.current();
-	  console.log(current);
-  	  if(current){
-		   $('.logged').show();
-		   $('.unlogged').hide();
-		   $('#personPage').html("<div class=\"userPic\"></div><div class=\"profile\"><span class=\"username\">Emma Watson</span></div><div class=\"progressDiv\"><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress1\" class=\"progress large\" data-value=\"35\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress2\" class=\"progress large\" data-value=\"65\" data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress3\" class=\"progress large\" data-value=\"45\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress4\" class=\"progress large\" data-value=\"95\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></div><span class=\"dialog-close-button\"></span></div>");
-  	  }
-  	  else{
-		  $('.logged').hide();
-		  $('.unlogged').show();
-  	  }
-      });
-	  $(document).on('click','.logged',function(e){
-	      console.log('hihihih');	 
-		  e.preventDefault();
-		  Parse.User.logOut();
-		  window.location="peachparrot.html";
-	  });
-	  function toCourse(index){
-		  window.location = 'course.html#scroll'+index;
-	  }
-    </script>
 </head>
 
 <body class="homeBody">
