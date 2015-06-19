@@ -48,9 +48,41 @@ $('#myTab a').click(function (e) {
 })
 //modal
 function showDialog(id){
-	var dialog = $(id).data('dialog');
-    dialog.open();
+	var current=Parse.User.current();
+	var Course = Parse.Object.extend('CourseProgress');
+	var course = new Parse.Query(Course);
+	//course.equalTo('Progress',step);
+	course.equalTo('UserId',Parse.User.current());	
+	course.find({
+		success:function(obj){
+			for (var i = 0 ; i < obj.length ; i++){ 
+				course = obj[i] ; 
+				courseId=course.get("CourseId");
+				step=course.get("Progress");			
+				var checked = 0;
+				var percent=0;
+				for(var i=0;i<step.length-1;i++){
+					if(step[i]>0){checked++;}
+				}
+				percent = checked/step.length+(step[step.length-1]/(step.length*100));
+				$('#progress'+courseId+" .bar").width((percent*100)+"%");			
+			}
+								
+		},
+		error:function(obj,err){
+			alert('find course fail');
+		}
+	});
+	
+	if(current){	
+    	var dialog = $(id).data('dialog');
+    	dialog.open();
+	}	
+	else{
+		window.location = 'login.html';		
+	}
 }
+
 $(document).on('click','.dialog-close-button',function(){
 	$('#personPage').data('dialog').close();
 });
@@ -111,7 +143,10 @@ function runModal(step,courseId){
 	}
 	percent = checked/step.length+(step[step.length-1]/(step.length*100));
 	console.log(percent);
-	showDialog('#personPage');	
+	
+	var dialog = $('#personPage').data('dialog');
+	dialog.open();
+
 	$('#progress'+courseId+" .bar").width((percent*100)+"%");
 }
 //login
