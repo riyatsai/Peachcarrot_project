@@ -30,7 +30,7 @@ header p{
 	font-size:40px;
 	color:#fff;
 }
-body{
+body,h2{
 	font-family: Meiryo;	
 }
 .homeBody{
@@ -111,7 +111,7 @@ font-family: Meiryo;
 #footerPic3{
 	position:absolute;
 	top:70%;
-	right:30%;
+	right:20%;
 }
 #footerPic4{
 	position:absolute;
@@ -134,6 +134,7 @@ font-family: Meiryo;
 	width: 130px; 
 	height: 130px; 
 	border-radius: 50%; 
+	background-size:130px 130px;
 	background-image:url('pic/user.jpg'); 
 	background-repeat: no-repeat;
 }
@@ -290,4 +291,28 @@ fieldset[disabled] .btn.active {
 }
 .bar{
 	transition: ease width 3s;
+}
+.fixPic{
+	position:fixed;
+	height:600px;	
+	z-index:10000;
+}
+.fixPic2{
+	position:fixed;
+	height:100px;	
+	z-index:10000;
+}
+.girlDiv{
+	position:absolute;
+	right:10%;
+}
+.birdDiv{
+	position:absolute;
+	left:1%;
+	top:70%;
+}
+#imgFile{
+	width:130px; 
+	height:130px; 
+	opacity:0;
 }

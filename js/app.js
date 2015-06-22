@@ -5,7 +5,8 @@ $(document).ready(function(){
   if(current){
    	$('.logged').show();
     $('.unlogged').hide();
-    $('#personPage').html("<div class=\"userPic\"></div><div class=\"profile\"><span class=\"username\">"+current.get("username")+"</span></div><div class=\"progressDiv\"><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress1\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress2\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress3\" class=\"progress large\" data-value=\"0\" data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress4\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress5\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></div><span class=\"dialog-close-button\"></span></div>");
+    $('#personPage').html("<div class=\"userPic\"><input id=\"imgFile\" type=\"file\"></div><div class=\"profile\"><span class=\"username\">"+current.get("username")+"</span></div><div class=\"progressDiv\"><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress1\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress2\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress3\" class=\"progress large\" data-value=\"0\" data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress4\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></br><span class=\"glyphicon glyphicon-star\" style=\"color:#FFEE99;display:inline-block;\"></span><div id=\"progress5\" class=\"progress large\" data-value=\"0\"  data-role=\"progressBar\"><div class=\"bar\" style=\"background-color:#ACDCCE;\"></div></div></div><span class=\"dialog-close-button\"></span></div>");
+	$('.userPic').css({'background':'url('+current.get('img').url()+')','background-size':'130px 130px'});
   }
   else{
     $('.logged').hide();
@@ -203,3 +204,19 @@ $(document).on('submit','#signUpForm',function(e){
   });
   
 });  
+$(document).on('change','#imgFile',function(){
+    var user = Parse.User.current();
+    var file = $("#imgFile")[0].files[0];
+	var parseImg = new Parse.File(user.get('username'), file);
+    user.set("img",parseImg);
+	
+	user.save(null,{
+		success:function(data){
+			$('.userPic').css({'background':'url('+data.get('img').url()+')','background-size':'130px 130px'});
+		},
+		error:function(data,error){
+			console.log(error);
+			alert('img upload fail');
+		}
+	});
+});

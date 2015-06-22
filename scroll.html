@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+ <head>
+  <title>parallax scrolling</title>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="css/style2.css">
+
+ </head>
+  
+  <body>
+    <script src="js/skrollr.min.js"></script>
+    <script src="js/skrollr.stylesheets.js"></script>
+    <script type="text/javascript">
+     var s = skrollr.init();
+    </script>
+
+
+
+<body>
+    <div id="skrollr-body">
+		<div id="enter" class="centered" data-7650="opacity: 0;" data-7750="opacity: 1;" ><a href="peachparrot.html" style="background:url('pic/PeachLogo.png'); width:300px; height:300px; background-size:300px 300px; display:block;"></a></div>  
+        <div id="girl" class="centered" data-4700="opacity: 1;" data-5200="opacity: 0;">
+        </div>
+        <div id="slide1" class="centered" data-0="width:100%;" data-1000="width:0%;">
+          <h1>ABOUT<br>THE PEACH PARROT<br> WEBSITE</h1>
+        </div>
+
+        <div id="slide2" class="centered" data-1050="height:100%;" data-2050="height:0%;">
+          <h1>編織手鍊<br>線上教學</h1>
+        </div>
+
+        <div id="slide3" class="centered" data-2100="width:100%;" data-3100="width:0%;">
+          <h1>學習進度<br>自我檢視</h1>
+        </div>
+
+        <div id="slide4" class="centered" data-3150="height:100%;" data-4150="height:0%;">
+          <h1>線上編織模擬器<br>&nbsp;&nbsp;動手嘗試花色</h1>
+        </div>
+        <div id="slide5" class="centered" data-4200="width:100%;" data-5200="width:0%;">
+          <h1>成為編織達人</h1>
+        </div>
+
+
+
+
+        <div id="slide6" class="centered" data-5050="background-position: 0px -300px;" data-6500="background-position: 0px 0px;">
+         <div id="climbing" class="centered" data-6500="background-position: 0px -550px;" data-7500="background-position: 0px 0px;" data-7550="opacity: 1;" data-7600="opacity: 0;" data-7850="height:100%;;" data-8850="height:0%;"></div>
+         <div id="girlEnd" class="centered" data-7650="opacity: 0;" data-7750="opacity: 1;" ></div>
+        <div id="endding" class="centered" data-7850="opacity: 0;" data-8850="opacity: 1;"></div>
+    </div>
+
+<script src="js/skrollr.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        skrollr.init({
+        forceHeight: false
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+html, body {
+    padding:0;margin:0;
+}
+
+/*---we need enough height for scrolling----*/
+body {
+    overflow:auto; height:9600px; 
+}
+
+/*---all will happen in the fixed window-----*/
+#skrollr-body {
+    width:100%; height:100%; position:fixed; 
+}
+#skrollr-body  div {
+    overflow:hidden; position:absolute; 
+}
+
+/*---to center horizontally and vertically the elements that have position: absolute----*/
+.centered {
+ top:0; bottom:0; left:0; right:0; margin:auto; 
+}
+
+#girl {
+	background: url("../png/figure/girlB1.png") center center no-repeat ; z-index:12;
+	background-size: cover;
+
+}
+
+#slide1 {
+    background: #E7685D url('../png/16X9 no floor/PPweb_threadRoom1-01.png') center center no-repeat ; z-index:11;
+    background-size: cover;
+}
+
+#slide1 h1{
+	margin-left: 350px;
+	margin-top: 50px;
+    color: #A98674;
+}
+/*
+#girl2 {
+	background: url("../png/figure/girlB1.png") center center no-repeat ; z-index:10;
+	background-size: cover;
+
+}
+*/
+
+#slide2 {
+    background: #94C3B6 url('../png/16X9 no floor/PPweb_room2-01.png') center center no-repeat ; z-index:10; 
+    background-size: cover;
+}
+
+#slide2 h1{
+	margin-left: 950px;
+	margin-top: 100px;
+    color: #836B52;
+    font-family: Microsoft JhengHei,Heiti TC,LiHei Pro;
+}
+
+#slide3 {
+    background: #94C3B6 url('../png/16X9 no floor/PPweb_momRoom3-01.png') center center no-repeat ; z-index:9; 
+    background-size: cover;
+}
+
+#slide3 h1{
+	margin-left: 650px;
+	margin-top: 100px;
+    color: #754c28;
+    font-family: Microsoft JhengHei;
+}
+
+#slide4 {
+    background: #94C3B6 url('../png/16X9 no floor/PPweb_kitchen4-01.png') center center no-repeat ; z-index:8; 
+    background-size: cover;
+}
+
+#slide4 h1{
+	margin-left: 350px;
+	margin-top: 450px;
+    color: #4d4a4b;
+    font-family: Microsoft JhengHei;
+}
+
+#slide5 {
+    background: #94C3B6 url('../png/16X9 no floor/PPweb_livingRoom5-01.png') center center no-repeat ; z-index:7; 
+    background-size: cover;
+}
+
+#slide5 h1{
+    margin-left: 400px;
+    margin-top: 500px;
+    color: #861a27;
+    font-family: Microsoft JhengHei;
+}
+
+#climbing {
+    background: url('../png/figure/girlB2.png') center center no-repeat ; z-index:6; 
+    background-size: cover;
+}
+
+
+#slide6 {
+    background: #fffaab url('../png/bracelet/braceletX4.png') center center no-repeat ; z-index:5; 
+    background-size: cover;
+}
+
+#girlEnd {
+    background: url('../png/figure/girlB3.png') center center no-repeat ; z-index:4; 
+    background-size: cover;
+}
+
+
+#endding {
+    background-color:#FFEE99; 
+    background-size: cover;
+}
+
+#enter{
+	width:300px;
+	height:300px;
+	position:absolute;
+	top:23%;
+	margin:0 auto;
+	opacity:1;
+	border-radius:50%;
+	box-shadow: 0 3px 2px #aaa;
+	z-index:10000;
+}
+
+/*
+#endding {
+    background:#8DBAAE url('../png/16X9 no floor/endding.png') no-repeat center center; z-index:6;
+}
