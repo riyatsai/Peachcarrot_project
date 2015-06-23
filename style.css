@@ -124,11 +124,6 @@ font-family: Meiryo;
 	right:7%;
 }
 
-.personPage{
-	width:800px; 
-	height: 500px; 
-	display: block;
-}
 .userPic{
 	display:inline-block;
 	width: 130px; 
@@ -142,7 +137,7 @@ font-family: Meiryo;
 	display:inline-block;
 	position:relative;
 	width:300px;
-	float:right;
+	top:50px;	
 }
 .username{
 	width:100px;
@@ -151,10 +146,10 @@ font-family: Meiryo;
 	font-size:2em;
 }
 .progressDiv{
-	width:340px;
-	height:200px;
+	width:250px;
+	height:300px;
 	border-radius:10px;
-	margin-top:10%;
+	margin-top:1%;
 }
 .progress{
 	display:inline-block;
@@ -180,7 +175,7 @@ font-family: Meiryo;
 	width:20px;
 	height:130px;
 	position:fixed;
-	top:40%;
+	top:30%;
 	left:5%;
 	z-index:10000;
 }
@@ -189,9 +184,20 @@ font-family: Meiryo;
 	height:15px;
 	border-radius:50%;
 	background-color:#F4ACB7;
+	margin-top:20px;
+	margin-left:80%;
+}
+.selectorCircleBig{
+	width:50px;
+	height:50px;
+	border-radius:50%;
+	background-color:#F4ACB7;
 	margin-top:20px;	
 }
 .selectorCircle:hover{
+	background-color:#FFCAD4;
+}
+.selectorCircleBig:hover{
 	background-color:#FFCAD4;
 }
 .courseContent{
@@ -202,7 +208,7 @@ font-family: Meiryo;
 	display:inline-block;
 	position:absolute;
 	top:10%;
-	right:10%;
+	right:15%;
 	width:200px;
 }
 .courseContentLeft{
@@ -213,11 +219,11 @@ font-family: Meiryo;
 }
 .progressForm{
 	background-color:#ACDCCE;
-	border-radius:50%;
+	border-radius:5px;
 	width:250px;
 	height:250px;
 	margin:0 auto;
-	padding:4em;
+	padding:2em;
 
 }
 .testLink{
@@ -315,4 +321,17 @@ fieldset[disabled] .btn.active {
 	width:130px; 
 	height:130px; 
 	opacity:0;
+}
+.userPic:hover{
+	opacity:0.5;
+}
+.courseName{
+	position:relative;
+	left:8%;
+	margin:0 auto;
+	font-size:40px;
+}
+.modalProgressTitle{
+	font-family: Meiryo;	
+	color:#F4ACB7;
 }
