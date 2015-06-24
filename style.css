@@ -196,10 +196,10 @@ font-family: Meiryo;
 	margin-top:20px;	
 }
 .selectorCircle:hover{
-	background-color:#FFCAD4;
+	opacity:0.7;
 }
 .selectorCircleBig:hover{
-	background-color:#FFCAD4;
+	opacity:0.7;
 }
 .courseContent{
 	width:100vw;
@@ -209,8 +209,8 @@ font-family: Meiryo;
 	display:inline-block;
 	position:absolute;
 	top:10%;
-	right:15%;
-	width:200px;
+	right:12%;
+	width:250px;
 }
 .courseContentLeft{
 	display:inline-block;
@@ -219,12 +219,13 @@ font-family: Meiryo;
 	left:15%;
 }
 .progressForm{
-	background-color:#ACDCCE;
+	border:solid; 
+	border-width:1px;
+	border-color:#aaa;
 	border-radius:5px;
 	width:250px;
-	height:250px;
 	margin:0 auto;
-	padding:2em;
+	padding:1em;
 
 }
 .testLink{
@@ -330,9 +331,17 @@ fieldset[disabled] .btn.active {
 	position:relative;
 	left:8%;
 	margin:0 auto;
-	font-size:40px;
+	font-size:90px;
+	color:#F4ACB7;
 }
 .modalProgressTitle{
 	font-family: Meiryo;	
 	color:#F4ACB7;
+}
+.tip{
+	border:solid; 
+	border-width:1px;
+	border-color:#aaa;
+	border-radius:5px;
+	padding:1em;
 }
