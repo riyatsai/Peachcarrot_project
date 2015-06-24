@@ -347,5 +347,7 @@ fieldset[disabled] .btn.active {
 }
 .tryDiv{
 	position:absolute;
-	left:30%;
+	left:35%;
+	top:10%;
+	
 }
