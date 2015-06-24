@@ -1,5 +1,13 @@
-int mapSizeX=400;
+int mapSizeX=350;
 int mapSizeY=550;
+
+PImage ColorCard, LastColor, CoreText, RollerText;
+//SystemText
+PImage AskNum, ChooseColor, Neighbor, UndoSuccess, Reuse, FirstError, LengthError, OutputSuccess, AskCore, AskRoller;
+//Buttoms
+PImage  Start, Undo, Reknit, Autoknit, Output, Restart;
+//SpecialKnit
+PImage Skewknit, Vknit;
 
 PrintWriter output;
 //0:not done,1:Done
@@ -16,7 +24,8 @@ int knitSize=12;
 int reduceLen=knitSize/2;
 
 //lineData:0=R,1=G,2=B,3=Length
-int [][] lineData = new int [lineNum][4];
+int [][] lineData=new int [lineNum][4];
+int [][] lineColorCpy= new int [lineNum][3];
 //linePosition:0=lineX,1=lineY,2=firstKnitFlag
 int [][] linePosition= new int [lineNum][3];
 //knitPoint:0=R,1=G,2=B,3=pointX,4=pointY
@@ -27,55 +36,55 @@ int [][] knitRecorder= new int [1000][2];
 int [][] knitPosition= new int [lineNum-1][3];
 
 int numButtomSize=30;
-int numButtomX=180;
-int numButtomY=105;
+int numButtomX=150;
+int numButtomY=115;
 int numButtomYshift=50;
 int numButtomTextX=numButtomX+numButtomSize/2;
 int numButtomTextY=numButtomY+numButtomSize/2;
 
-int colorCardSize=100;
+int systemTextX1=0;
+int systemTextY1=25;
+int systemTextXSize=350;
+int systemTextYSize=65;
+
+int stepX=20;
+int stepY=150;
+int stepXSize=60;
+int stepYSize=25;
+int steptYShift=30;
+int stepTextX=stepX+stepXSize+8;
+int stepTextY=stepY+stepYSize-2;
+
 int colorCardX=260;
-int colorCardY=startX;
+int colorCardY=startY;
+int colorCardSize=60;
+
 int colorBoxSize=60;
-int colorBoxX=265;
+int colorBoxX=260;
 int colorBoxY=300;
+
 int colorStackX=30;
 int colorStackY=160;
-
+int colorStackTextX=20;
+int colorStackTextY=120;
 int colorStackR;
 int colorStackG;
 int colorStackB;
-int textOpeningX=100;
-int textOpeningY=15;
-int textStepX=50;
-int textStepY=120;
-
-int systemBoxSizeX=350;
-int systemBoxSizeY=60;
-int systemBoxX=25;
-int systemBoxY=25;
-int textSystemX=systemBoxX+10;
-int textSystemY=systemBoxY+systemBoxSizeY/2;
 
 int buttomXSize=80;
 int buttomYSize=30;
-int buttomX=260; //Set all the buttomX
-int buttomY=200;
-int buttomYshift=40;
-int buttomTextX=buttomX+buttomXSize/2;
-int buttomTextY=buttomY+buttomYSize/2;
+int buttomYShift=40;
 
+int buttomX=250;
+int buttomY=230;
 int autoButtomX=20;
-int autoButtomY=220;
-int autoButtomYshift=40;
-int autoButtomTextX=autoButtomX+buttomXSize/2;
-int autoButtomTextY=autoButtomY+buttomYSize/2;
+int autoButtomY=240;
 
 int Core, Roller, Chosen;
 int knitReady, knitStart, canKnit, stepCounter, stepTag, autoStep;
 
 //SystemText Flag
-int reuse, neighbor, autoError, outputError, outputCorrect, lengthError, firstError, undoCorrect;
+int reuse, neighbor, autoError, outputError, outputSuccess, lengthError, firstError, undoSuccess;
 int coreFlag, colorFlag, lineFlag;
 int c, r, i, j, k;
 
@@ -83,41 +92,77 @@ int skewStep, VStep, VLeftFlag;
 
 void setup() {
   size(mapSizeX, mapSizeY);
+  loadGraph();
 }
 
 void draw() {
-  background(255, 255, 230);
+
+  background(255, 255, 255);
   if (initialFlag==0) {
+    //lineNum=0;
     numButtom();
     initialAll();
   } else {
     otherButtoms();
     if (knitReady==0) {
-      colorCard(); //HEAVY COST
       chooseColor();
       colorStack();
     } else {
       textStep(Core, Roller);
-      autoButtoms();
     }
+    chooseLine();
+    update();
   }
   textSystem();
-  chooseLine();
-  update();
+
+  strokeWeight(1);
+  stroke(180, 180, 180);
+  line(10, 90, 340, 90);
+}
+
+void loadGraph() {
+  ColorCard=loadImage("ColorCard.png");
+  CoreText= loadImage("CoreText.png");
+  RollerText= loadImage("RollerText.png");
+  LastColor= loadImage("LastColor.png");
+  //SystemText
+  AskNum=loadImage("AskNum.png");
+  ChooseColor=loadImage("ChooseColor.png");
+  Neighbor=loadImage("Neighbor.png");
+  UndoSuccess=loadImage("UndoSuccess.png");
+  Reuse=loadImage("Reuse.png");
+  FirstError=loadImage("FirstError.png");
+  LengthError=loadImage("LengthError.png");
+  OutputSuccess=loadImage("OutputSuccess.png");
+  AskCore=loadImage("AskCore.png");
+  AskRoller=loadImage("AskRoller.png");
+
+  //Buttoms
+  Start= loadImage("Start.png");
+  Undo= loadImage("Undo.png");
+  Reknit= loadImage("Reknit.png");
+  Autoknit= loadImage("Autoknit.png");
+  Output= loadImage("Output.png");
+  Restart= loadImage("Restart.png");
+
+  //SpecialKnit
+  Skewknit= loadImage("Skewknit.png");
+  Vknit= loadImage("Vknit.png");
 }
 
 void initialAll() {
-  //knitStart=0;
   knitReady=0;
-  //autoStep=stepTag=0;
   colorStackR=colorStackG=colorStackB=255;
-  Core=Roller=Chosen=-1;
+  Core=Roller=-1;
   canKnit=coreFlag=1;
+  colorFlag=0;
+
   if (setNumFlag==1) {
     lineData=new int [lineNum][4];
     linePosition=new int [lineNum][3];
     knitPosition= new int [lineNum-1][3];
-
+    //Responsive Line
+    startX=int((350-(lineNum-1)*distance)/2);
     j=0;
     k=distance/2;
     for (i=0; i<lineNum; i++) {
@@ -151,24 +196,37 @@ void numButtom() {
     strokeWeight(1);
     fill(139, 105, 105);
     textAlign(CENTER, CENTER);
-    textSize(20);
+    textSize(16);
     text(i, numButtomTextX, numButtomTextY+j);
 
-    stroke(255, 165, 0);
-    fill(205, 133, 63, 50);
+    stroke(97, 207, 161);
+    fill(97, 207, 161, 50);
     rect(numButtomX, numButtomY+j, numButtomSize, numButtomSize);
     j+=numButtomYshift;
   }
 }
 
-void colorCard() {
-  for ( i = 0; i <= colorCardSize; i += 1) {
-    for (j = 0; j <= colorCardSize; j += 1) {
-      noStroke();
-      fill(i*225/colorCardSize, j*225/colorCardSize, 100); 
-      ellipse(i+colorCardX, j+colorCardY, 1, 1);
+void chooseColor() {
+  image(ColorCard, colorCardX, colorCardY, colorCardSize, colorCardSize);
+  stroke(0, 0, 0);
+  strokeWeight(2);
+  fill(0, 0, 0, 0);
+  rect(colorBoxX, colorBoxY, colorBoxSize, colorBoxSize);
+  if (mouseX>colorCardX&&mouseX<(colorCardX+colorCardSize)) {
+    if (mouseY>colorCardY&&mouseY<(colorCardY+colorCardSize)) {
+      stroke(255);
+      fill((mouseX-colorCardX)*225/colorCardSize, (mouseY-colorCardY)*225/colorCardSize, 100); 
+      rect(colorBoxX, colorBoxY, colorBoxSize, colorBoxSize);
     }
   }
+}
+
+void colorStack() {
+  image(LastColor, colorStackTextX, colorStackTextY, buttomXSize, buttomYSize);
+  stroke(0, 0, 0);
+  strokeWeight(1);
+  fill(colorStackR, colorStackG, colorStackB);
+  rect(colorStackX, colorStackY, colorBoxSize, colorBoxSize);
 }
 
 void checknumButtom() {
@@ -186,60 +244,44 @@ void checknumButtom() {
 }
 
 void textSystem() {
-  strokeWeight(3);
-  stroke(204, 102, 0);
-  fill(205, 133, 63, 50);
-  rect(systemBoxX, systemBoxY, systemBoxSizeX, systemBoxSizeY);
-
-  strokeWeight(1);
-  fill(139, 105, 105);
-  textAlign(LEFT, CENTER);
-  textSize(16);
   if (setNumFlag==0) {
-    text("How many Lines you need?", textSystemX, textSystemY);
-  } //else if (initialFlag==1&&knitReady==0) {
-  else {//if (setNumFlag==1)
+    image(AskNum, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+  } else {//if (setNumFlag==1)
     if (knitReady==0) {
-      if (initialFlag==1) {
-        text("Choose any Line:"+(Chosen+1)+" , and choose the Color.", textSystemX, textSystemY);
-      }
+      if (initialFlag==1)image(ChooseColor, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
     } else {//if (knitReady==1) 
-      if (neighbor==1)text("Please choose the adjacent Line!", textSystemX, textSystemY);
-      else if (undoCorrect==1)text("Undo sucess!", textSystemX, textSystemY);
-      else if (reuse==1)text("Please choose the different Line!", textSystemX, textSystemY);
-      else if (firstError==1)text("Please try to Knitting first! ", textSystemX, textSystemY);
-      else if (lengthError==1)text("Oh oh~ Line is not long enough!", textSystemX, textSystemY);
-      else if (outputCorrect==1)text("Output Success! ", textSystemX, textSystemY);
-
-      else if (coreFlag==0) { 
-        text("Core="+(Core+1)+", then choose Roller line!", textSystemX, textSystemY);
-      } else {
-        text("Please choose Core line.", textSystemX, textSystemY);
-      }
+      if (neighbor==1)image(Neighbor, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+      else if (undoSuccess==1)image(UndoSuccess, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+      else if (reuse==1)image(Reuse, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+      else if (firstError==1)image(FirstError, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+      else if (lengthError==1)image(LengthError, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+      else if (outputSuccess==1)image(OutputSuccess, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+      else if (coreFlag==0) image(AskRoller, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
+      else image(AskCore, systemTextX1, systemTextY1, systemTextXSize, systemTextYSize);
     }
   }
 }
 
 void textStep(int c, int r) {
-  textAlign(CENTER, TOP);
-  textSize(20);
-  fill(165, 42, 42);
-  text("Step:"+(stepCounter), textStepX, textStepY);
-  text("Core:" + (c+1), textStepX, textStepY+25);
-  text("Roller:" + (r+1), textStepX, textStepY+50);
+  image(CoreText, stepX, stepY, stepXSize, stepYSize);
+  image(RollerText, stepX, stepY+steptYShift, stepXSize, stepYSize);
 
-  if (coreFlag==0) { 
-    text("Core:" + (c+1), textStepX, textStepY+25);
+  textAlign(CENTER, BOTTOM);
+  textSize(16);
+  fill(110, 123, 139);
+
+  if (coreFlag==0) {
+    text((c+1), stepTextX, stepTextY);
+    text("0", stepTextX, (stepTextY+steptYShift));
   } else {
-    text("Roller:" + (r+1), textStepX, textStepY+50);
+    text((c+1), stepTextX, stepTextY);
+    text((r+1), stepTextX, (stepTextY+steptYShift));
   }
 }
 
 void chooseLine() {
-
   if (mouseY>startY&&mouseY<(startY+lineLength)) {
     j=0;
-
     for ( i=0; i<lineNum; i++) {
       if (mouseX>((startX+j)-(distance/2))&&mouseX<((startX+j)+(distance/2))) {
         strokeWeight(lineStroke+3);
@@ -247,20 +289,6 @@ void chooseLine() {
         break;
       }
       j=j+distance;
-    }
-  }
-}
-
-void chooseColor() {
-  stroke(0, 0, 0);
-  strokeWeight(2);
-  fill(0, 0, 0, 0);
-  rect(colorBoxX, colorBoxY, colorBoxSize, colorBoxSize);
-  if (mouseX>colorCardX&&mouseX<(colorCardX+colorCardSize)) {
-    if (mouseY>colorCardY&&mouseY<(colorCardY+colorCardSize)) {
-      stroke(255);
-      fill((mouseX-colorCardX)*225/colorCardSize, (mouseY-colorCardY)*225/colorCardSize, 100); 
-      rect(colorBoxX, colorBoxY, colorBoxSize, colorBoxSize);
     }
   }
 }
@@ -301,91 +329,49 @@ void checkColor() {
   }
 }
 
-void colorStack() {
-  //textAlign(CENTER, TOP);
-  textSize(18);
-  fill(139, 105, 105);
-  text("Last Color", colorStackX+27, colorStackY-15);
-
-  stroke(0, 0, 0);
-  strokeWeight(1);
-  fill(colorStackR, colorStackG, colorStackB);
-  rect(colorStackX, colorStackY, colorBoxSize, colorBoxSize);
-}
-
 void otherButtoms() {//6 Buttoms:
-  //okButtom
-  if (knitReady==0) {
-    strokeWeight(1);
-    fill(139, 105, 105);
-    textAlign(CENTER, CENTER);
-    textSize(15);
-    text("Start!", buttomTextX, buttomTextY+buttomYshift);
-
-    stroke(255, 165, 0);
-    fill(205, 133, 63, 50);
-    rect(buttomX, buttomY+buttomYshift, buttomXSize, buttomYSize);
-  } 
-
+  //StartButtom
+  if (knitReady==0) image(Start, buttomX, buttomY, buttomXSize, buttomYSize);
   //Others
   else {
-    strokeWeight(1);
-    fill(139, 105, 105);
-    textAlign(CENTER, CENTER);
-    textSize(15);
-    text("Undo", buttomTextX, buttomTextY);
-    text("ReKnit", buttomTextX, buttomTextY+buttomYshift);
-    text("Auto Knit", buttomTextX, buttomTextY+buttomYshift*2);
-    text("Output", buttomTextX, buttomTextY+buttomYshift*3);
-    text("ReStart", buttomTextX, buttomTextY+buttomYshift*4);
+    image(Undo, buttomX, buttomY, buttomXSize, buttomYSize);
+    image(Reknit, buttomX, buttomY+buttomYShift, buttomXSize, buttomYSize);
+    image(Autoknit, buttomX, buttomY+buttomYShift*2, buttomXSize, buttomYSize);
+    image(Output, buttomX, buttomY+buttomYShift*3, buttomXSize, buttomYSize);
+    image(Restart, buttomX, buttomY+buttomYShift*4, buttomXSize, buttomYSize);
 
-    j=0;
-    for (i=0; i<5; i++) {
-      stroke(255, 165, 0);
-      fill(205, 133, 63, 50);
-      rect(buttomX, buttomY+j, buttomXSize, buttomYSize);
-      j+=buttomYshift;
-    }
-  }
-}
-
-void autoButtoms() {
-  strokeWeight(1);
-  fill(139, 105, 105);
-  textAlign(CENTER, CENTER);
-  textSize(15);
-  text("SkewKnit", autoButtomTextX, autoButtomTextY);
-  text("VKnit", autoButtomTextX, autoButtomTextY+autoButtomYshift);
-  //text("ZigzagKnit", autoButtomTextX, autoButtomTextY+autoButtomYshift*2);
-  j=0;
-  for (i=0; i<2; i++) {
-    stroke(255, 165, 0);
-    fill(205, 133, 63, 50);
-    rect(autoButtomX, autoButtomY+j, buttomXSize, buttomYSize);
-    j+=autoButtomYshift;
+    //show AutoButtom
+    image(Skewknit, autoButtomX, autoButtomY, buttomXSize, buttomYSize);
+    image(Vknit, autoButtomX, autoButtomY+buttomYShift, buttomXSize, buttomYSize);
   }
 }
 
 void checkOkButtom() {
-  if (mouseX>buttomX&&mouseX<(buttomX+buttomXSize)) {
-    if (mouseY>buttomY+buttomYshift&&mouseY<(buttomY+buttomYshift+buttomYSize)) {
+  if (mouseX>buttomX&&mouseX<buttomX+buttomXSize) {
+    if (mouseY>buttomY&&mouseY<(buttomY+buttomYSize)) {
+      for (i=0; i<lineNum; i++) {
+        //cpy Line Color
+        lineColorCpy[i][0]=lineData[i][0];
+        lineColorCpy[i][1]=lineData[i][1];
+        lineColorCpy[i][2]=lineData[i][2];
+      }
       knitReady=1;
     }
   }
 }
 
 void checkOtherButtom() {
-  if (mouseX>buttomX&&mouseX<(buttomX+buttomXSize)) {
+  if (mouseX>buttomX&&mouseX<buttomX+buttomXSize) {
     j=0;
     for (i=1; i<=5; i++) {
       if (mouseY>(buttomY+j)&&mouseY<(buttomY+buttomYSize+j)) break;
-      j+=buttomYshift;
+      j+=buttomYShift;
     }
     // undoButtom
     if (i==1) {
       if (stepCounter>0) {
         undo();
-        undoCorrect=1;
+        undoSuccess=1;
       } else firstError=1;
     }
     //reKnit
@@ -417,11 +403,11 @@ void checkOtherButtom() {
 }
 
 void checkAutoButtom() {
-  if (mouseX>autoButtomX&&mouseX<(autoButtomX+buttomXSize)) {
+  if (mouseX>autoButtomX&&mouseX<autoButtomX+buttomXSize) {
     j=0;
     for (i=1; i<=3; i++) {
       if (mouseY>(autoButtomY+j)&&mouseY<(autoButtomY+buttomYSize+j)) break;
-      j+=autoButtomYshift;
+      j+=buttomYShift;
     }
     if (canKnit==1) {
       // undoButtom
@@ -433,8 +419,8 @@ void checkAutoButtom() {
       else if (i==2) {
         VLeftFlag=1;
         VKnit();
-      }
-      /*else if (i==3) {
+      }/*else if (i==3) {
+       i=0;
        ZigzagFlag=0;
        ZigzagKnit();
        }*/
@@ -450,12 +436,10 @@ void checkCoreAndRoller() {
         if (coreFlag==1) {
           Core=i;
           coreFlag=0;
-          //checkLineMotivation(lineData[Core][0], lineData[Core][1], lineData[Core][2], lineData[Core][3], linePosition[Core][0], linePosition[Core][1]);
           break;
         } else {
           Roller=i;
           coreFlag=1;
-          //checkLineMotivation(lineData[Roller][0], lineData[Roller][1], lineData[Roller][2], lineData[Roller][3], linePosition[Roller][0], linePosition[Roller][1]);
 
           if (Core!=Roller) {
             if (abs(Core-Roller)==1&&canKnit==1) {
@@ -472,7 +456,7 @@ void checkCoreAndRoller() {
 }
 
 void mouseClicked() {
-  neighbor=undoCorrect=reuse=firstError=lengthError=outputCorrect=0;
+  neighbor=undoSuccess=reuse=firstError=lengthError=outputSuccess=0;
   if (initialFlag==0) {
     checknumButtom();
   }
@@ -610,12 +594,12 @@ void update() {
 }
 
 void outputResult() {
-  output = createWriter("knitRecorder.txt");
+  output=createWriter("knitRecorder.txt");
   for (i=1; i<=stepCounter; i++) {
-    output.println("Step "+ i + ":  Core: "+ knitRecorder[i][0] + ", Roller: "+knitRecorder[i][1]);
+    output.println("Step "+ i + ":  Core: "+ (knitRecorder[i][0]+1)+", Roller: "+(knitRecorder[i][1]+1));
   }
   output.close();
-  outputCorrect=1;
+  outputSuccess=1;
 }
 
 void autoKnit() {
@@ -639,6 +623,9 @@ void reKnit() {
     //InitialPosition
     linePosition[i][1]=startY;
     //Initial Line Length
+    lineData[i][0]=lineColorCpy[i][0];
+    lineData[i][1]=lineColorCpy[i][1];
+    lineData[i][2]=lineColorCpy[i][2];
     lineData[i][3]=lineLength;
     if (i<(lineNum-1)) {
       knitPosition[i][1]=startY;
@@ -695,30 +682,18 @@ void VKnit() {
 }
 /*int ZigzagFlag=0;
  int ZigzagStep;
- void ZigzagKnit() { 
- if (canKnit==1) {
- while (ZigzagFlag!=2) {
+ void ZigzagKnit() {
  if (ZigzagFlag==0) {
- i=0;
+ i++;
+ if (i<=lineNum) {
  ZigzagStep=lineNum-1;
  for (j=i; j<lineNum; j++) {
- i++;
  Core=ZigzagStep;
  Roller=ZigzagStep-1;
  knitStart=1;
  Knitting();
  ZigzagStep--;
  }
- i++;
- }
- }
- }
- }
- */
-/*void checkLineMotivation(int r, int g, int b, int l, int x, int y) {
- int CorR=1;
- for (i=0; i<5; i++) {
- strokeWeight(lineStroke+i);
- drawLine(lineData[CorR][0], lineData[CorR][1], lineData[CorR][2], lineData[CorR][3], linePosition[CorR][0], linePosition[CorR][1]);
+ } else ZigzagFlag=1;
  }
  }*/
