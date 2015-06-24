@@ -351,3 +351,16 @@ fieldset[disabled] .btn.active {
 	top:10%;
 	
 }
+.back{
+	width:150px;
+	height:150px;
+	border-radius:50%;
+	background-color:#F4ACB7;
+	margin-top:20px;
+	top:40%;
+	left:10%;	
+}
+.back:hover{
+	opacity:0.7;
+}
+
