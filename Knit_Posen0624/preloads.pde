@@ -1,5 +1,5 @@
 /* @pjs pauseOnBlur="true"; 
-        preload="AskCore.png.png,
+        preload="AskCore.png,
                  AskNum.png,
                  AskRoller.png,
                  Autoknit.png,
