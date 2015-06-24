@@ -20,6 +20,5 @@
                  Start.png,
                  Undo.png,
                  UndoSuccess.png,
-                 Vknit.png              
-                 "; */
+                 Vknit.png"; */
 
