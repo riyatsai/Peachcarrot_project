@@ -345,3 +345,7 @@ fieldset[disabled] .btn.active {
 	border-radius:5px;
 	padding:1em;
 }
+.tryDiv{
+	position:absolute;
+	left:30%;
+}
